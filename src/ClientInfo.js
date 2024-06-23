@@ -56,11 +56,11 @@ class ClientInfo extends React.Component {
 				<div className="widget-content p-0">
 				    <div className="widget-content-wrapper">
 						<div className="widget-content-left">
-						    <div className="widget-heading"><p>Имя: {this.props.task.name ? <div>{this.props.task.name}</div> : <div>Не указано</div> }</p></div>
-							<div className="widget-heading"><p>Фамилия: {this.props.task.surname ? <div>{this.props.task.surname}</div> : <div>Не указано</div> }</p></div>
+						    <div className="widget-heading">Имя: {this.props.task.name ? <div>{this.props.task.name}</div> : <div>Не указано</div> }</div>
+							<div className="widget-heading">Фамилия: {this.props.task.surname ? <div>{this.props.task.surname}</div> : <div>Не указано</div> }</div>
 						    <div className="widget-subheading">
-								<div><p>Возраст: {this.props.task.age ? <div>{this.props.task.age}</div> : <div>Не указано</div> }</p></div>
-								<div><p>Мед полис:{this.props.task.med_polis ? <div>{this.props.task.med_polis}</div> : <div>Не указано</div> }</p></div>
+								<div>Возраст: {this.props.task.age ? <div>{this.props.task.age}</div> : <div>Не указано</div> }</div>
+								<div>Мед полис:{this.props.task.med_polis ? <div>{this.props.task.med_polis}</div> : <div>Не указано</div> }</div>
 						  </div>
 						</div>
 						<div className="widget-content-right">
