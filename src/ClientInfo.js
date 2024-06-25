@@ -9,6 +9,7 @@ class ClientInfo extends React.Component {
 		
 		this.onStatusClick = this.onStatusClick.bind(this);
 		this.onDeleteClick = this.onDeleteClick.bind(this);
+		this.onTick = this.onTick.bind(this);
 	}
 		
 	onStatusClick(e) {
@@ -48,6 +49,24 @@ class ClientInfo extends React.Component {
 			}
 		});
 	}
+
+	onTick() {
+		
+		const current = new Date();
+		
+		let nowDay = current.getDate();
+		let nowMonth = (current.getMonth() + 1)*30;
+		let nowYear = current.getFullYear()*12*30;
+		let now = nowYear * nowMonth + nowDay;
+		let elapsed = now - this.props.task.date;
+		let dt = 360 - elapsed;
+		
+		if (dt < 0) {
+			return <span>Страховка просрочена</span>
+		}
+
+		return dt;
+	}
 	
 	render() {
 		return (
@@ -66,6 +85,7 @@ class ClientInfo extends React.Component {
 						<div className="widget-content-right">
 						<div align="right">
 						<span onClick={this.onStatusClick}><b>{this.props.task.done ? 'Застрахован' : 'Не Застрахован'}</b></span>
+						<div>Дней до окончания страховки: <span>{this.onTick()}</span></div>
 						</div>
 						<div align="left">
 						   <button className="border-0 btn-transition btn btn-outline-danger" onClick={this.onDeleteClick}>
@@ -79,5 +99,6 @@ class ClientInfo extends React.Component {
 		)
 	}
 }
+
 
 export default connect()(ClientInfo);

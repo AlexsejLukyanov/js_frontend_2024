@@ -14,7 +14,8 @@ function todo(state = [], action) {
 					surname: action.surname,
 					med_polis: action.med_polis,
 					age: action.age,
-					done:{}
+					done:{},
+					date: action.date
 				}
 			]
 		case TODO_ADD_ALL:

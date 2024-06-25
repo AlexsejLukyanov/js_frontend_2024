@@ -4,16 +4,29 @@ import { connect } from 'react-redux';
 
 import { todoAdd } from './actions'
 
+function onGetDate() {
+	const currentDate = new Date();
+	
+	let currentDay = currentDate.getDate();
+	let currentMonth = (currentDate.getMonth() + 1)*30;
+	let currentYear = currentDate.getFullYear()*12*30;
+	
+	let res = currentYear * currentMonth + currentDay;
+		
+	return res;
+}
+
 class ClientAddInner extends React.Component {
 	
 	constructor(props) {
 		super(props);
 		
 		this.state = {
-			name:'',
-			surname:'',
-			med_polis:'',
-			age:''
+			name: '',
+			surname: '',
+			med_polis: '',
+			age: '',
+			date: onGetDate()
 		}
 		
 		this.onNameChange = this.onNameChange.bind(this);
@@ -67,6 +80,7 @@ class ClientAddInner extends React.Component {
 				surname: this.state.surname,
 				med_polis: this.state.med_polis,
 				age: this.state.age,
+				date: this.state.date
 			}),
 			headers: {
 				'Content-Type':'application/json'
@@ -74,8 +88,9 @@ class ClientAddInner extends React.Component {
 		}).then((res) => {
 			return res.json();
 		}).then((data) => {
-			this.props.dispatch(todoAdd(data._id, data.name, data.surname, data.med_polis, data.age));
+			this.props.dispatch(todoAdd(data._id, data.name, data.surname, data.med_polis, data.age, data.date));
 			this.props.history('/');
+			window.location.reload();
 		});
 	}
 	
