@@ -62,16 +62,30 @@ class ClientInfo extends React.Component {
 		let dt = 360 - elapsed;
 		
 		if (dt < 0) {
-			return <span>Страховка просрочена</span>
+			return (
+			<div>
+			<div>Страховка просрочена</div>
+			<div><b>Не застрахован</b></div>
+			</div>
+			)
 		}
-
-		return dt;
+		if (dt > 0) {
+			return (
+			<div>
+			<div>{dt}</div>
+			<div><b>Застрахован</b></div>
+			</div>
+			)
+		}
+		if (isNaN(dt)) {
+        return 360;
+		}
+		//return dt;
 	}
 	
 	render() {
 		return (
 			<li className="list-group-item">
-				{this.props.task.done ? <div className="todo-indicator bg-success"></div> : <div className="todo-indicator bg-focus"></div>}
 				<div className="widget-content p-0">
 				    <div className="widget-content-wrapper">
 						<div className="widget-content-left">
@@ -84,7 +98,6 @@ class ClientInfo extends React.Component {
 						</div>
 						<div className="widget-content-right">
 						<div align="right">
-						<span onClick={this.onStatusClick}><b>{this.props.task.done ? 'Застрахован' : 'Не Застрахован'}</b></span>
 						<div>Дней до окончания страховки: <span>{this.onTick()}</span></div>
 						</div>
 						<div align="left">
